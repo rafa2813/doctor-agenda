@@ -24,8 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 // esquema Zod para o formulário de registro
-const registerSchema = z.object({
-  name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
+const loginSchema = z.object({
   email: z.string().trim().min(1, { message: "Email é obrigatório" }).email({
     message: "Email inválido",
   }),
@@ -33,24 +32,19 @@ const registerSchema = z.object({
     .string()
     .trim()
     .min(8, { message: "Senha deve ter pelo menos 8 caracteres" }),
-  confirmPassword: z
-    .string()
-    .min(8, { message: "Senha deve ter pelo menos 8 caracteres" }),
 });
 
-const SingUpForm = () => {
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
+const LoginForm = () => {
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
   //enviar dados para o backend
-  const onSubmit = (values: z.infer<typeof registerSchema>) => {
+  const onSubmit = (values: z.infer<typeof loginSchema>) => {
     console.log(values);
   };
 
@@ -62,23 +56,10 @@ const SingUpForm = () => {
           className="w-full space-y-6"
         >
           <CardHeader>
-            <CardTitle>Criar conta</CardTitle>
-            <CardDescription>Crie uma conta para continuar</CardDescription>
+            <CardTitle>Login</CardTitle>
+            <CardDescription>Faça login para continuar</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nome</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite seu nome" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="email"
@@ -108,7 +89,7 @@ const SingUpForm = () => {
           </CardContent>
           <CardFooter>
             <Button type="submit" className="w-full">
-              Criar conta
+              Entrar
             </Button>
           </CardFooter>
         </form>
@@ -117,4 +98,4 @@ const SingUpForm = () => {
   );
 };
 
-export default SingUpForm;
+export default LoginForm;
