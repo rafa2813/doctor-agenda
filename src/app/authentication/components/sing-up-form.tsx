@@ -37,9 +37,6 @@ const registerSchema = z.object({
     .string()
     .trim()
     .min(8, { message: "Senha deve ter pelo menos 8 caracteres" }),
-  confirmPassword: z
-    .string()
-    .min(8, { message: "Senha deve ter pelo menos 8 caracteres" }),
 });
 
 const SingUpForm = () => {
@@ -50,7 +47,6 @@ const SingUpForm = () => {
       name: "",
       email: "",
       password: "",
-      // confirmPassword: "",
     },
   });
 
@@ -61,7 +57,6 @@ const SingUpForm = () => {
         email: values.email,
         password: values.password,
         name: values.name,
-        image: "",
       },
       {
         onSuccess: () => {
@@ -94,7 +89,11 @@ const SingUpForm = () => {
                 <FormItem>
                   <FormLabel>Nome</FormLabel>
                   <FormControl>
-                    <Input placeholder="Digite seu nome" {...field} />
+                    <Input
+                      placeholder="Digite seu nome"
+                      {...field}
+                      type="text"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,7 +106,11 @@ const SingUpForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Digite seu email" {...field} />
+                    <Input
+                      placeholder="Digite seu email"
+                      {...field}
+                      type="email"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -120,7 +123,11 @@ const SingUpForm = () => {
                 <FormItem>
                   <FormLabel>Senha</FormLabel>
                   <FormControl>
-                    <Input placeholder="Digite sua senha" {...field} />
+                    <Input
+                      placeholder="Digite sua senha"
+                      {...field}
+                      type="password"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
