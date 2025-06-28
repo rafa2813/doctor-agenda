@@ -34,7 +34,7 @@ export function NavMain({
       <SidebarGroupLabel className="mb-2 text-gray-400">
         Menu Principal
       </SidebarGroupLabel>
-      <SidebarMenu className="border-y border-red-700">
+      <SidebarMenu>
         {items.map((item) => (
           <Collapsible
             key={item.title}
@@ -46,7 +46,8 @@ export function NavMain({
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton
                   tooltip={item.title}
-                  className="py-2 transition-all duration-200 hover:text-blue-600"
+                  className="py-2 transition-all duration-200 hover:bg-blue-100 hover:text-blue-600"
+                  size="lg"
                 >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>

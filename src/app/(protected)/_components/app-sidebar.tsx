@@ -72,6 +72,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
+  const session = authClient.useSession();
 
   const handleSignOut = async () => {
     await authClient.signOut();
@@ -87,7 +88,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter className="pb-4">
-        <NavUser user={data.user} handleSignOut={handleSignOut} />
+        <NavUser
+          user={{
+            name: session.data?.user?.name ?? "",
+            email: session.data?.user?.email ?? "",
+            avatar: session.data?.user?.image ?? "",
+          }}
+          handleSignOut={handleSignOut}
+        />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
