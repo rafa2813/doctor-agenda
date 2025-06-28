@@ -1,6 +1,7 @@
 "use client";
 
 import { type LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 import {
   Collapsible,
@@ -17,6 +18,7 @@ import {
 
 export function NavMain({
   items,
+  isActive,
 }: {
   items: {
     title: string;
@@ -28,6 +30,7 @@ export function NavMain({
       url: string;
     }[];
   }[];
+  isActive: string;
 }) {
   return (
     <SidebarGroup>
@@ -39,7 +42,7 @@ export function NavMain({
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={item.isActive}
+            defaultOpen={isActive === item.url}
             className="group/collapsible text-gray-600"
           >
             <SidebarMenuItem className="text-sm font-medium">
@@ -49,8 +52,10 @@ export function NavMain({
                   className="py-2 transition-all duration-200 hover:bg-blue-100 hover:text-blue-600"
                   size="lg"
                 >
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
+                  <Link href={item.url} className="flex items-center gap-2">
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </Link>
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent></CollapsibleContent>

@@ -1,4 +1,5 @@
 "use client";
+//lembrete: tudo funcionando - hora: 15h50
 
 import {
   CalendarIcon,
@@ -6,7 +7,7 @@ import {
   Stethoscope,
   UsersRound,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 
 import { NavMain } from "@/components/nav-main";
@@ -23,26 +24,11 @@ import { authClient } from "@/lib/auth-client";
 
 // TODO: Change to real data
 const data = {
-  user: {
-    name: "Clínica",
-    email: "clinica@clinica.com",
-    avatar: "/avatars/clinica.jpg",
-  },
   teams: [
     {
       name: "Dr. Agenda",
       logo: Stethoscope,
       plan: "Enterprise",
-    },
-    {
-      name: "Clínica 02",
-      logo: Stethoscope,
-      plan: "Startup",
-    },
-    {
-      name: "Clínica 03",
-      logo: Stethoscope,
-      plan: "Free",
     },
   ],
   navMain: [
@@ -50,7 +36,6 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: LayoutDashboardIcon,
-      isActive: true,
     },
     {
       title: "Agendamentos",
@@ -73,6 +58,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
   const session = authClient.useSession();
+  const pathname = usePathname();
 
   const handleSignOut = async () => {
     await authClient.signOut();
@@ -85,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent className="pt-4 pb-4">
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} isActive={pathname} />
       </SidebarContent>
       <SidebarFooter className="pb-4">
         <NavUser
