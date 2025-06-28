@@ -4,8 +4,8 @@ import { customSession } from "better-auth/plugins";
 import { eq } from "drizzle-orm";
 
 import { db } from "@/db";
-import * as schema from "@/db/schema";
 import { usersToClinicsTable } from "@/db/schema";
+import * as schema from "@/db/schema";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -31,13 +31,16 @@ export const auth = betterAuth({
         },
       });
       //Todo: ao adaptar para o usuário ter mais de uma clínica, alterar para retornar todas as clínicas
-      const clinic = clinics[0];
+      const clinic = clinics?.[0];
+      if (!clinic) {
+        return { user, session };
+      }
       return {
         user: {
           ...user,
           clinic: {
-            id: clinic.clinicId,
-            name: clinic.clinic.name,
+            id: clinic?.clinicId,
+            name: clinic?.clinic?.name,
           },
         },
         session,

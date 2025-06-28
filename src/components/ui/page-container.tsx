@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 export const PageContainer = ({ children }: { children: React.ReactNode }) => {
   return <div className="space-y-6 p-6">{children}</div>;
@@ -6,7 +7,9 @@ export const PageContainer = ({ children }: { children: React.ReactNode }) => {
 // PageHeader
 export const PageHeader = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex w-full items-center justify-between">{children}</div>
+    <div className="flex w-full items-center justify-between gap-4">
+      {children}
+    </div>
   );
 };
 
@@ -16,9 +19,10 @@ export const PageHeaderContent = ({
 }: {
   children: React.ReactNode;
 }) => {
-  return <div className="space-y-2">{children}</div>;
+  return <div className="w-full space-y-2">{children}</div>;
 };
 
+// PageBreadcrumb
 export const PageBreadcrumb = ({
   items,
   children = null,
@@ -30,12 +34,22 @@ export const PageBreadcrumb = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div className="flex items-center gap-2">
-      {items.map((item) => (
+    <div className="text-muted-foreground flex w-full items-center gap-2 text-sm font-medium">
+      {items.map((item, index) => (
         // eslint-disable-next-line react/jsx-key
-        <Link href={item.href}>{item.label}</Link>
+        <Link
+          href={item.href}
+          className="hover:text-primary flex items-center gap-2 transition-colors duration-300"
+        >
+          {item.label}
+          {index < items.length - 1 && (
+            <span className="mx-2">
+              <ChevronRightIcon className="h-4 w-4" />
+            </span>
+          )}
+        </Link>
       ))}
-      {children}
+      {children && <span className="text-primary mx-2">{children}</span>}
     </div>
   );
 };
