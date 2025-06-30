@@ -1,8 +1,6 @@
-import { PlusIcon } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import {
   PageBreadcrumb,
   PageContainer,
@@ -15,6 +13,8 @@ import {
 } from "@/components/ui/page-container";
 import { auth } from "@/lib/auth";
 
+import AddDoctorButton from "./_components/add-doctor-button";
+
 const DoctorsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -23,7 +23,7 @@ const DoctorsPage = async () => {
     redirect("/authentication");
   }
 
-  if (!session.user.clinic) {
+  if (!("clinic" in session.user)) {
     redirect("/clinic-form");
   }
 
@@ -43,10 +43,7 @@ const DoctorsPage = async () => {
           </PageHeaderDescription>
         </PageHeaderContent>
         <PageHeaderAction>
-          <Button>
-            <PlusIcon className="h-4 w-4" />
-            Adicionar Médico
-          </Button>
+          <AddDoctorButton />
         </PageHeaderAction>
       </PageHeader>
       <PageContent>
