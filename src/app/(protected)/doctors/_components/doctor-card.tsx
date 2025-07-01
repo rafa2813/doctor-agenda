@@ -1,8 +1,10 @@
+"use client";
 import { Calendar, Clock, DollarSignIcon } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { deleteDoctor } from "@/actions/delete-doctor";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
