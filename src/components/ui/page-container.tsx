@@ -36,8 +36,8 @@ export const PageBreadcrumb = ({
   return (
     <div className="text-muted-foreground flex w-full items-center gap-2 text-sm font-medium">
       {items.map((item, index) => (
-        // eslint-disable-next-line react/jsx-key
         <Link
+          key={item.href}
           href={item.href}
           className="hover:text-primary flex items-center gap-2 transition-colors duration-300"
         >
