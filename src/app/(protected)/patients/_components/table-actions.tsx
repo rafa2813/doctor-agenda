@@ -102,6 +102,7 @@ export const PatientsTableActions = ({
           <UpsertPatientForm
             patient={patient}
             onSuccess={() => setUpsertDialogIsOpen(false)}
+            isOpen={upsertDialogIsOpen}
           />
         </DialogContent>
       </Dialog>
