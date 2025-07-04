@@ -1,60 +1,27 @@
-import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
+
+//layout container
 export const PageContainer = ({ children }: { children: React.ReactNode }) => {
-  return <div className="space-y-6 p-6">{children}</div>;
+  return <div className="w-full space-y-6 p-6">{children}</div>;
 };
 
-// PageHeader
+//layout cabeçalho
 export const PageHeader = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex w-full items-center justify-between gap-4">
-      {children}
-    </div>
+    <div className="flex w-full items-center justify-between">{children}</div>
   );
 };
 
-// PageHeaderContent
+//layout conteúdo do cabeçalho
 export const PageHeaderContent = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  return <div className="w-full space-y-2">{children}</div>;
+  return <div className="w-full space-y-1">{children}</div>;
 };
 
-// PageBreadcrumb
-export const PageBreadcrumb = ({
-  items,
-  children = null,
-}: {
-  items: {
-    label: string;
-    href: string;
-  }[];
-  children?: React.ReactNode;
-}) => {
-  return (
-    <div className="text-muted-foreground flex w-full items-center gap-2 text-sm font-medium">
-      {items.map((item, index) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className="hover:text-primary flex items-center gap-2 transition-colors duration-300"
-        >
-          {item.label}
-          {index < items.length - 1 && (
-            <span className="mx-2">
-              <ChevronRightIcon className="h-4 w-4" />
-            </span>
-          )}
-        </Link>
-      ))}
-      {children && <span className="text-primary mx-2">{children}</span>}
-    </div>
-  );
-};
-
-// PageHeaderTitle
+//layout título
 export const PageHeaderTitle = ({
   children,
 }: {
@@ -63,7 +30,23 @@ export const PageHeaderTitle = ({
   return <h1 className="text-2xl font-bold">{children}</h1>;
 };
 
-// PageHeaderDescription
+export const PageBreadcrumb = ({
+  items,
+}: {
+  items: { label: string; href: string }[];
+}) => {
+  return (
+    <div className="flex items-center gap-2">
+      {items.map((item) => (
+        <Link key={item.href} href={item.href}>
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+//layout descrição
 export const PageHeaderDescription = ({
   children,
 }: {
@@ -72,8 +55,8 @@ export const PageHeaderDescription = ({
   return <p className="text-muted-foreground text-sm">{children}</p>;
 };
 
-// PageHeaderAction
-export const PageHeaderAction = ({
+//layout ações (botões)
+export const PageHeaderActions = ({
   children,
 }: {
   children: React.ReactNode;
@@ -81,7 +64,7 @@ export const PageHeaderAction = ({
   return <div className="flex items-center gap-2">{children}</div>;
 };
 
-// PageContent
+//layout conteúdo principal
 export const PageContent = ({ children }: { children: React.ReactNode }) => {
-  return <div className="space-y-6">{children}</div>;
+  return <div className="w-full space-y-6">{children}</div>;
 };

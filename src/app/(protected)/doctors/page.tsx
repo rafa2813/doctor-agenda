@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import { ChevronRight } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -7,7 +8,7 @@ import {
   PageContainer,
   PageContent,
   PageHeader,
-  PageHeaderAction,
+  PageHeaderActions,
   PageHeaderContent,
   PageHeaderDescription,
   PageHeaderTitle,
@@ -44,15 +45,16 @@ const DoctorsPage = async () => {
               { label: "Menu Principal", href: "/dashboard" },
               { label: "Médicos", href: "/doctors" },
             ]}
+            chevron={<ChevronRight />}
           />
           <PageHeaderTitle>Médicos</PageHeaderTitle>
           <PageHeaderDescription>
             Gerencie os médicos da sua clínica.
           </PageHeaderDescription>
         </PageHeaderContent>
-        <PageHeaderAction>
+        <PageHeaderActions>
           <AddDoctorButton />
-        </PageHeaderAction>
+        </PageHeaderActions>
       </PageHeader>
       <PageContent>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">

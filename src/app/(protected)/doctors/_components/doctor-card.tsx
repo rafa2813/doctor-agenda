@@ -92,12 +92,16 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             </Button>
           </DialogTrigger>
           <UpsertDoctorForm
+            isOpen={isUpsertDoctorDialogOpen}
             doctor={{
               ...doctor,
               availableFromTime: availability.from.format("HH:mm:ss"),
               availableToTime: availability.to.format("HH:mm:ss"),
             }}
-            onSuccess={() => setIsUpsertDoctorDialogOpen(false)}
+            onSuccess={() => {
+              toast.success("Médico atualizado com sucesso");
+              setIsUpsertDoctorDialogOpen(false);
+            }}
           />
         </Dialog>
       </CardFooter>

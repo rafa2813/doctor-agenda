@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import {
   PageContainer,
   PageHeader,
+  PageHeaderContent,
   PageHeaderTitle,
 } from "@/components/ui/page-container";
 import { auth } from "@/lib/auth";
@@ -24,7 +25,9 @@ const DashboardPage = async () => {
   return (
     <PageContainer>
       <PageHeader>
-        <PageHeaderTitle>Dashboard</PageHeaderTitle>
+        <PageHeaderContent>
+          <PageHeaderTitle>Dashboard</PageHeaderTitle>
+        </PageHeaderContent>
       </PageHeader>
     </PageContainer>
   );

@@ -2,26 +2,32 @@
 
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
-import UpsertDoctorForm from "./upsert-doctor-form";
+import UpsertPatientForm from "../_components/upsert-patient-form";
 
-const AddDoctorButton = () => {
+const AddPatientButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="cursor-pointer">
+        <Button>
           <PlusIcon className="h-4 w-4" />
-          Adicionar Médico
+          Adicionar paciente
         </Button>
       </DialogTrigger>
-      <UpsertDoctorForm isOpen={isOpen} onSuccess={() => setIsOpen(false)} />
+      <UpsertPatientForm
+        isOpen={isOpen}
+        onSuccess={() => {
+          toast.success("Paciente adicionado com sucesso");
+          setIsOpen(false);
+        }}
+      />
     </Dialog>
   );
 };
 
-export default AddDoctorButton;
+export default AddPatientButton;
